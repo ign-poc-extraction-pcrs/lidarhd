@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  demo-lidarhd:
+    container_name: demo-lidarhd
+    command: python3 run_prod.py
+    build:
+      context: "."  
+      dockerfile: Dockerfile
+      args:    
+        - http_proxy
+        - https_proxy
+    environment:
+      - HTTP_PROXY=${HTTP_PROXY}
+      - HTTPS_PROXY=${HTTPS_PROXY}
+      - ACCESS_KEY_ID_RO=${ACCESS_KEY_ID_RO}
+      - SECRET_ACCESS_KEY_RO=${SECRET_ACCESS_KEY_RO}
+      - ACCESS_KEY_ID_RW=${ACCESS_KEY_ID_RW}
+      - SECRET_ACCESS_KEY_RW=${SECRET_ACCESS_KEY_RW}
+      - DEFAULT_BUCKET=${DEFAULT_BUCKET}
+      - ENDPOINT=${ENDPOINT}
+      - REGION=${REGION}
+      - HOST_SERVEUR=${HOST_SERVEUR}
+    ports:
+      - '5000:5000'
+    restart: on-failure
+
+  # CronJob en cible : https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/
+  # cron-lidarhd:
+  #   container_name: cron-lidarhd
+  #   command: python3 /usr/src/app/dalle_lidar.py
+  #   build:  
+  #     context: "."  
+  #     dockerfile: Dockerfile
+  #   restart: on-failure
