@@ -11,8 +11,6 @@ services:
         - http_proxy
         - https_proxy
     environment:
-      - HTTP_PROXY=${HTTP_PROXY}
-      - HTTPS_PROXY=${HTTPS_PROXY}
       - ACCESS_KEY_ID_RO=${S3_RO_ACCESS_KEY}
       - SECRET_ACCESS_KEY_RO=${S3_RO_PRIVATE_KEY}
       - ACCESS_KEY_ID_RW=${S3_RW_ACCESS_KEY}
