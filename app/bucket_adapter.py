@@ -51,8 +51,11 @@ class BucketAdpater:
             json/bool: retourne le contenu du fichier / false si aucun fichier trouvé
         """
         try:
+            logging.debug(self.bucket_name)
+            logging.debug(type(self.bucket_name))
             response = self.s3_client.get_object(Bucket=self.bucket_name, Key=name_file)
             data = json.loads(response['Body'].read().decode('utf-8'))
+            
             return data
         except ClientError as e:
             logging.error(self.bucket_name)
