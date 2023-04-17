@@ -22,7 +22,7 @@ class BucketAdpater:
             endpoint_url=os.environ.get('ENDPOINT'),
             region_name=os.environ.get('REGION'),
         )
-        self.bucket_name = os.environ.get('DEFAULT_BUCKET')
+        self.bucket_name = os.environ.get('BUCKET')
 
     def upload_file(self, path_file: Path, name_file):
         """upload fichier sur ovh
@@ -51,14 +51,10 @@ class BucketAdpater:
             json/bool: retourne le contenu du fichier / false si aucun fichier trouvé
         """
         try:
-            logging.debug(self.bucket_name)
-            logging.debug(type(self.bucket_name))
             response = self.s3_client.get_object(Bucket=self.bucket_name, Key=name_file)
             data = json.loads(response['Body'].read().decode('utf-8'))
             
             return data
         except ClientError as e:
-            logging.error(self.bucket_name)
-            logging.error(type(self.bucket_name))
             logging.error(e)
             return False
