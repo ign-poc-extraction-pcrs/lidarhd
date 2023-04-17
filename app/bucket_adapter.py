@@ -55,5 +55,7 @@ class BucketAdpater:
             data = json.loads(response['Body'].read().decode('utf-8'))
             return data
         except ClientError as e:
+            logging.error(self.bucket_name)
+            logging.error(type(self.bucket_name))
             logging.error(e)
             return False
