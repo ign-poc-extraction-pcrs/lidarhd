@@ -3,7 +3,6 @@ version: '3'
 services:
   demo-lidarhd:
     container_name: demo-lidarhd
-    command: python3 run_prod.py
     build:
       context: "."  
       dockerfile: Dockerfile
