@@ -250,7 +250,7 @@ function show_popup(layer, type = "open") {
     template = `<h6>${title}</h6><p>${text}</p>`
 
     if (type == "open") {
-        layer.bindPopup(template).openPopup()
+        layer.bindPopup(template, {autoPan: false}).openPopup()
     } else {
         layer.closePopup()
     }
